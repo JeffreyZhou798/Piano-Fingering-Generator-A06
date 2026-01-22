@@ -1,0 +1,48 @@
+name: Build Test (No Deploy)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: frontend/package-lock.json
+        
+    - name: Install dependencies
+      run: |
+        cd frontend
+        npm ci
+        
+    - name: Build Worker code
+      run: |
+        node scripts/build-worker.js
+        
+    - name: Build Next.js app
+      run: |
+        cd frontend
+        npm run build
+        
+    - name: Check build output
+      run: |
+        ls -la frontend/out/
+        echo "✅ Build successful!"
+        
+    - name: Verify static files
+      run: |
+        test -f frontend/out/index.html || exit 1
+        test -d frontend/out/_next || exit 1
+        echo "✅ Static files verified!"
