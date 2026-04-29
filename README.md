@@ -1108,6 +1108,12 @@ If you find this project helpful, please consider giving it a star! ⭐
 
 ---
 
+## License
+
+MIT License - See [LICENSE](../LICENSE) for details.
+
+---
+
 ## ⚠️ Copyright Notice
 
 © 2026 Jeffrey Zhou. All rights reserved.
@@ -1116,7 +1122,10 @@ This repository and its contents are protected by copyright law. No part of this
 
 **Commercial use is strictly prohibited.**
 
-*Built with ❤️ for music education*
+
+*Built with ❤️ for music education* ```
+
+
 
 ---
 
